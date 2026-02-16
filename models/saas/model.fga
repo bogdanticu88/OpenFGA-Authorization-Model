@@ -1,0 +1,56 @@
+model
+  schema 1.1
+
+type user
+
+type tenant
+  relations
+    define owner: [user]
+    define admin: [user]
+    define member: [user]
+
+type workspace
+  relations
+    define tenant: [tenant]
+    define owner: [user]
+    define admin: [user]
+    define member: [user]
+
+type project
+  relations
+    define workspace: [workspace]
+    define tenant: [tenant]
+    define owner: [user]
+    define admin: [user]
+    define member: [user]
+
+type resource
+  relations
+    define project: [project]
+    define workspace: [workspace]
+    define tenant: [tenant]
+    define owner: [user]
+    define editor: [user]
+    define viewer: [user]
+
+type invitation
+  relations
+    define tenant: [tenant]
+    define inviter: [user]
+    define invitee: [user]
+    define role: [string]
+    define expires_at: [string]
+
+type role
+  relations
+    define tenant: [tenant]
+    define name: [string]
+    define permissions: [string]
+
+type audit_log
+  relations
+    define tenant: [tenant]
+    define user: [user]
+    define action: [string]
+    define resource: [string]
+    define timestamp: [string]

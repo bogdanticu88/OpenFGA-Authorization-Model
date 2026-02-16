@@ -1,0 +1,41 @@
+model
+  schema 1.1
+
+type user
+
+type organization
+  relations
+    define department: [organization]
+    define resource_type: [string]
+    define budget_limit: [string]
+
+type department
+  relations
+    define organization: [organization]
+    define parent_department: [department]
+    define manager: [user]
+    define member: [user]
+
+type resource
+  relations
+    define organization: [organization]
+    define owner: [user]
+    define resource_type: [string]
+    define classification: [string]
+
+type permission
+  relations
+    define subject: [user]
+    define resource: [resource]
+    define action: [string]
+    define conditions: [string]
+    define status: [string]
+
+type policy
+  relations
+    define subject_type: [string]
+    define resource_type: [string]
+    define action: [string]
+    define department: [department]
+    define classification: [string]
+    define effect: [string]

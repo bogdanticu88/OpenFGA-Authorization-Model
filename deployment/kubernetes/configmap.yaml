@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openfga-config
+data:
+  log-level: "info"
+  http-addr: "0.0.0.0:8080"
+  grpc-addr: "0.0.0.0:8081"
+  playground-enabled: "true"
+  datastore-engine: "postgres"
